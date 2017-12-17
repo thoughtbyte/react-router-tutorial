@@ -1,0 +1,10 @@
+section.loading {
+  height: 300px;
+  padding: 50px;
+}
+.loading h1 {
+  height: 50px;
+  margin-bottom: 0;
+  margin-top: 10px;
+  transition: all 1s cubic-bezier(.25, .75, .75, .00);
+}

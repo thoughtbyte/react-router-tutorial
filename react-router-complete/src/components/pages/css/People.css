@@ -1,0 +1,8 @@
+.people {
+  margin-top: 40px;
+}
+.people a.person {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
