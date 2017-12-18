@@ -7,16 +7,14 @@ class LoadingSingle extends Component {
     super();
     this.state = {
       color: "#222222",
-      fontSize: 32,
+      fontSize: 18,
       translate3d: [0, 0, 0],
       rotate3d: [0, 0, 0],
       rotateAngle: 0,
     };
   }
 
-  componentDidMount() {
-    let count = 1;
-
+  componentWillMount() {
     this.intervalId = setInterval(() => {
       const letters = "0123456789ABCDEF";
       const fontSize = Math.floor(Math.random() * 16) + 32;
@@ -34,20 +32,8 @@ class LoadingSingle extends Component {
       );
       const rotateAngle = Math.floor(Math.random() * 360) - 180;
 
-      if (count % 3 === 0) {
-        this.setState({
-          color: "#222222",
-          fontSize: 32,
-          translate3d: [0, 0, 0],
-          rotate3d: [0, 0, 0],
-          rotateAngle: 0,
-        });
-      } else {
-        this.setState({ color, fontSize, translate3d, rotate3d, rotateAngle });
-      }
-
-      count++;
-    }, 200);
+      this.setState({ color, fontSize, translate3d, rotate3d, rotateAngle });
+    }, 100);
   }
 
   componentWillUnmount() {
