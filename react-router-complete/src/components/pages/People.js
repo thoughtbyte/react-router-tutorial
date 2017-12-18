@@ -4,7 +4,7 @@ import { NavLink, Route } from "react-router-dom";
 import { Person, Loading } from "../elements";
 import "./css/People.css";
 
-export const People = ({ people }) => {
+export const People = ({ people, setCurrentPerson }) => {
   return people.length > 0 ? (
     <section className="people">
       {people.map((person, index) => (
@@ -13,6 +13,9 @@ export const People = ({ people }) => {
           className="person"
           activeClassName="active"
           key={person.url}
+          onClick={() => {
+            setCurrentPerson(index + 1);
+          }}
         >
           {person.name}
         </NavLink>

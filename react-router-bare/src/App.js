@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 
 import { NavBar } from "./components/elements";
 import { Home, About, People, NotFound } from "./components/pages";
@@ -34,12 +35,15 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <main>
-          <Home />
-          <About />
-          <People people={this.state.people} />
-          <NotFound />
-          {/* We want to conditionally render a component here
-          depending on the current URL path */}
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route
+              path="/people"
+              render={props => <People {...props} people={this.state.people} />}
+            />
+            <Route path="/" component={NotFound} />
+          </Switch>
         </main>
       </div>
     );

@@ -10,7 +10,9 @@ class App extends Component {
     super();
     this.state = {
       people: [],
+      currentPerson: null,
     };
+    this.setCurrentPerson = this.setCurrentPerson.bind(this);
   }
 
   async componentDidMount() {
@@ -30,6 +32,17 @@ class App extends Component {
     this.setState({ people });
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('dsfsd')
+    if (this.state.currentPerson && nextProps.location.pathname === "/people") {
+      this.props.history.push(`/people/${this.state.currentPerson}`);
+    }
+  }
+
+  setCurrentPerson(personId) {
+    this.setState({ currentPerson: personId });
+  }
+
   render() {
     return (
       <div className="App">
@@ -40,7 +53,14 @@ class App extends Component {
             <Route path="/about" component={About} />
             <Route
               path="/people"
-              render={props => <People {...props} people={this.state.people} />}
+              render={props => (
+                <People
+                  {...props}
+                  people={this.state.people}
+                  currentPerson={this.state.currentPerson}
+                  setCurrentPerson={this.setCurrentPerson}
+                />
+              )}
             />
             <Route path="/" component={NotFound} />
           </Switch>
